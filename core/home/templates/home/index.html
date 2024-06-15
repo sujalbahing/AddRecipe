@@ -1,0 +1,49 @@
+
+{% extends "base.html" %}
+{% block start %}
+
+
+
+<a href="/contact/">
+        Contact
+    </a>
+|
+    <a href="/about/">
+        About
+    </a>
+    <h4>People List:</h4>
+    <table class="container">
+        <tr>
+            <th>S No.</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Can Vote</th>
+        </tr>
+        {% for person in peoples %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+            <td {% if person.age < 18 %} style="background: red" {% endif %} >
+                {% if person.age >= 18 %}
+                👍
+                {% else %}
+                👎
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+
+        <p>
+            {% if "Cucumber" in vegetables %}
+                Yes, Cucumber is available
+             {% elif "Pumpkin" in vegetables %}
+                Yes, Pumpkin is available
+            {% else %}
+                Not Available
+            {% endif %}
+        </p>
+        
+    </table>
+
+{% endblock %}
